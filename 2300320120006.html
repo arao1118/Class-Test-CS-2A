@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Bulb Application</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .bulb-wrapper {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .bulb {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        /* Switch styling */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: red;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: green;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        #resetBtn {
+            padding: 10px 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="bulb-wrapper">
+        <img src="https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png" id="bulb1" class="bulb">
+        <br>
+        <label class="switch">
+            <input type="checkbox" id="checkbox1" onclick="changeImage(1)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <div class="bulb-wrapper">
+        <img src="https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png" id="bulb2" class="bulb">
+        <br>
+        <label class="switch">
+            <input type="checkbox" id="checkbox2" onclick="changeImage(2)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <div class="bulb-wrapper">
+        <img src="https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png" id="bulb3" class="bulb">
+        <br>
+        <label class="switch">
+            <input type="checkbox" id="checkbox3" onclick="changeImage(3)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <div class="bulb-wrapper">
+        <img src="https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png" id="bulb4" class="bulb">
+        <br>
+        <label class="switch">
+            <input type="checkbox" id="checkbox4" onclick="changeImage(4)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <br>
+    <button id="resetBtn" onclick="resetAll()">Reset</button>
+
+    <script>
+        function changeImage(num) {
+            const bulb = document.getElementById('bulb' + num);
+            const checkbox = document.getElementById('checkbox' + num);
+            
+            if (checkbox.checked) {
+                bulb.src = "https://pics.clipartpng.com/midle/Yellow_Light_Bulb_PNG_Clip_Art-2108.png";
+                setTimeout(() => {
+                    bulb.src = "https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png";
+                    checkbox.checked = false;
+                }, 10000);
+            } else {
+                bulb.src = "https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png";
+            }
+        }
+
+        function resetAll() {
+            for(let i = 1; i <= 4; i++) {
+                document.getElementById('bulb' + i).src = "https://pics.clipartpng.com/Light_Bulb_PNG_Clip_Art-2102.png";
+                document.getElementById('checkbox' + i).checked = false;
+            }
+        }
+    </script>
+</body>
+</html>
